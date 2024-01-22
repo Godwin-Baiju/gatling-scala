@@ -2,14 +2,18 @@
 
 # Introduction to Gatling
 
-- Gatling is an open-source load-testing tool designed for web application testing using a **"load test as code"** approach.
+- Gatling is an open-source load-testing tool designed for web application testing using a **"load test as code"**
+  approach.
 - The supported build tools include **Maven, Gradle, and SBT** (Scala Build Tool).
 - Makes use of **Akka and Netty frameworks** to provide efficient and scalable performance testing capabilities.
 - Akka simplifies the construction of concurrent and distributed applications on the JVM.
-- Netty is a client-server framework for the development of Java network applications such as protocol servers and clients
-- Unlike JMeter, which starts up a thread for every virtual user that needs to run, Gatling uses a different structure that allows it to run **more than one user per thread**.
+- Netty is a client-server framework for the development of Java network applications such as protocol servers and
+  clients
+- Unlike JMeter, which starts up a thread for every virtual user that needs to run, Gatling uses a different structure
+  that allows it to run **more than one user per thread**.
 - The tool is known for its expressive **DSL (Domain Specific Language) written in Scala**.
-- Additionally, Gatling features a script recorder with two modes: **HTTP proxy mode **and** HAR (HTTP Archive) converter mode**, facilitating the recording and conversion of scenarios for load-testing purposes.
+- Additionally, Gatling features a script recorder with two modes: **HTTP proxy mode **and** HAR (HTTP Archive)
+  converter mode**, facilitating the recording and conversion of scenarios for load-testing purposes.
 
 # Prerequisite installations for the workshop
 
@@ -22,9 +26,11 @@
 **1. Standalone Installation**
 
 - Go to [Open Source Load Testing | Gatling](https://gatling.io/open-source/) and download the open-source zip file.
-- Extract the package and navigate to: **./gatling-charts-highcharts-bundle-3.10.3-bundle/gatling-charts-highcharts-bundle-3.10.3/bin**
+- Extract the package and navigate to: 
+**./gatling-charts-highcharts-bundle-3.10.3-bundle/gatling-charts-highcharts-bundle-3.10.3/bin**
 - Open the terminal from the directory and enter **./gatling.sh** to run gatling.
-- The gatling scripts to be simulated should be included in the directory: **./gatling-charts-highcharts-bundle-3.10.3-bundle/gatling-charts-highcharts-bundle-3.10.3/user-files/simulations**
+- The gatling scripts to be simulated should be included in the directory: 
+  **./gatling-charts-highcharts-bundle-3.10.3-bundle/gatling-charts-highcharts-bundle-3.10.3/user-files/simulations**
 - Select the option to run the simulation locally and select the desired script.
 
 **2. Installation using Maven**
@@ -32,9 +38,11 @@
 - Ensure you have installed Maven, if not follow the steps given in this link: https://maven.apache.org/install.html
 - Next, install the Scala Metals plugin inside VS Code or IntelliJ IDEA as per your preference.
 - This plugin will enable a Scala language server and provide the typical features that you expect of an IDE.
-- Next, you have to follow different steps based on the IDE that you use, for VS Code go to the Metals tabs and click on import build.
+- Next, you have to follow different steps based on the IDE that you use, for VS Code go to the Metals tabs and click on
+  import build.
 - In IntelliJ IDEA, setup the Scala SDK, and run the Engine.scala file to start the simulation.
-- To run the script within VS Code, type **mvn gatling:test** in the terminal. If you want to run a specific test script, type in the following code instead:
+- To run the script within VS Code, type **mvn gatling:test** in the terminal. If you want to run a specific test
+  script, type in the following code instead:
 
         mvn test:gatling -DgatlingsimulationClass=&lt;package.simulationClassName>
 
@@ -186,7 +194,8 @@ def getSpecificVideoGame() = {
 
 **2. Custom Feeder**
 
-- We need to create this template file. Inside the src > test > resources > bodies folder, create a new file called NewGameTemplate.json. Add in the following JSON:
+- We need to create this template file. Inside the src > test > resources > bodies folder, create a new file called
+  NewGameTemplate.json. Add in the following JSON:
 
 ```
 {
@@ -263,8 +272,11 @@ setUp(
 )
 ```
 
-- **constantUsersPerSec(rate) during(duration)** - Injects users at a constant rate, defined in users per second, during a given duration. Users will be injected at regular intervals.
-- **rampUsersPerSec(rate1) to (rate2) during(duration)** - Injects users from starting rate to target rate, defined in users per second, during a given duration. Users will be injected at regular intervals. Ramping will take place at regular intervals as per the rate.
+- **constantUsersPerSec(rate) during(duration)** - Injects users at a constant rate, defined in users per second, during
+  a given duration. Users will be injected at regular intervals.
+- **rampUsersPerSec(rate1) to (rate2) during(duration)** - Injects users from starting rate to target rate, defined in
+  users per second, during a given duration. Users will be injected at regular intervals. Ramping will take place at
+  regular intervals as per the rate.
 
 ```
 val scn = scenario("Fixed Duration Load Simulation")
@@ -315,17 +327,17 @@ private def getProperty(propertyName: String, defaultValue: String) = {
 - Click on + to create a new item>Freestyle Project
 - **Configuring the project**
 
-  - Enter in the git repository under source code management.
-  - Next under Trigger check Poll SCM.
-  - Then under Schedule put in 5 stars with whitespaces in between - \* \* \* \* \* to run the build every minute.
-  - Under build steps select **“Invoke top-level Maven targets” **and enter the following command:
+    - Enter in the git repository under source code management.
+    - Next under Trigger check Poll SCM.
+    - Then under Schedule put in 5 stars with whitespaces in between - \* \* \* \* \* to run the build every minute.
+    - Under build steps select **“Invoke top-level Maven targets” **and enter the following command:
 
   **mvn test:gatling -DgatlingsimulationClass=&lt;package.simulationClassName>**
 
 - **Running with runtime parameters.**
-  - Check the box _“this project is parameterized”_.
-  - Select string parameter.
-  - Enter in the necessary parameters and values.
+    - Check the box _“this project is parameterized”_.
+    - Select string parameter.
+    - Enter in the necessary parameters and values.
 
 # Gatling Continuous Integration with Travis
 
