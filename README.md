@@ -91,6 +91,14 @@ class GatlingFundamentals extends Simulation {
    .header("Accept", "application/json") // OR .acceptHeader("application/json")
    .contentTypeHeader("application/json")
 
+object getNumberOfResources { // Using object to increase code reusability and organization
+    val resources = exec(http("Get the number of resources in the database")
+      .get("/{resource}")
+      .header("From", "TheFromHeader") // This sets an HTTP header named "From" with the value "TheFromHeader".
+      .check(jsonPath("$.total").saveAs("totalResources")))
+      .pause(3000.milliseconds)
+}
+
  def getNumberOfResources() = {
    exec(http("Get the number of resources in the database")
      .get("/{resource}")
@@ -161,8 +169,13 @@ class GatlingFundamentals extends Simulation {
      logout()
      pause(1, 20) // pause for 1 - 20 seconds
    }
+
+val scn1 = scenario("Testing")
+    .exec(getNumberOfResources.resources) // Calling the method of an object
+
 setUp(
-   scn.inject(atOnceUsers(1))
+   scn.inject(atOnceUsers(1)),
+   scn1.inject(atOnceUser(1))
  ).protocols(httpConf)
 }
 ```
