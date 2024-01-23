@@ -383,3 +383,8 @@ class MySimulation extends Simulation {
 - Google Forums Galting - [https://community.gatling.io/](https://community.gatling.io/)
 - [https://www.james-willett.com/](https://www.james-willett.com/)
 
+# Gatling Certifications Gained
+
+- https://academy.gatling.io/certificates/qq2f4dtidr
+- https://www.udemy.com/certificate/UC-3cee6a43-61df-4c1e-8fd5-2af1aadf3b9a/
+
